@@ -5,12 +5,34 @@ interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
-    <div className="flex flex-col gap-1 w-fit">
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/cabins">Cabins</Link>
-      <Link href="/account">Account</Link>
-    </div>
+    <nav className="z-10 text-xl">
+      <ul className="flex gap-8 sm:gap-16 items-center">
+        <li>
+          <Link
+            href="/cabins"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Cabins
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/about"
+            className="hover:text-accent-400 transition-colors"
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/account"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Guest area
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
