@@ -7,7 +7,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "btxtvhxbwjxbtxrxceii.supabase.co",
-        pathname: "/**", // Optional, allows all paths under this hostname
+        pathname: "/storage/v1/object/public/cabins-images/**", // Optional, allows all paths under this hostname
       },
     ],
   },

@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
-import CabinData from "./CabinData";
+import React, { Suspense } from "react";
+
 import { Metadata } from "next";
-import { getCabins } from "@/app/_lib/data-service";
-import CabinCard from "@/app/_Components/CabinCard";
+import CabinData from "@/app/_Components/CabinData";
+import Spinner from "@/app/_Components/Spinner";
 
 export const metadata: Metadata = {
   title: "Cabins",
 };
 
-async function page() {
-  const cabins: any[] = await getCabins();
+async function Page() {
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -24,15 +23,11 @@ async function page() {
         Welcome to paradise.
       </p>
 
-      {cabins.length > 0 ? (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-          {cabins.map((cabin: any) => (
-            <CabinCard cabin={cabin!} key={cabin.id} />
-          ))}
-        </div>
-      ) : null}
+      <Suspense fallback={<Spinner />}>
+        <CabinData />
+      </Suspense>
     </div>
   );
 }
 
-export default page;
+export default Page;
