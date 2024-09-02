@@ -3,14 +3,16 @@ import React from "react";
 import about1 from "@/public/about-1.jpg";
 import about2 from "@/public/about-2.jpg";
 import Image from "next/image";
+import { getCabins } from "@/app/_lib/data-service";
 
-interface pageProps {}
+export const revalidate = 60 * 60 * 24 * 3;
 
 export const metadata: Metadata = {
   title: "About",
 };
 
-const page: React.FC<pageProps> = ({}) => {
+async function page({}) {
+  const cabins = await getCabins();
   return (
     <div className="grid grid-cols-5 gap-x-4 gap-y-8 text-lg items-center max-w-full overflow-x-hidden">
       <div className="col-span-5 sm:col-span-3 max-w-full">
@@ -35,10 +37,10 @@ const page: React.FC<pageProps> = ({}) => {
             and enjoying simple pleasures with family.
           </p>
           <p>
-            Our 8 luxury cabins provide a cozy base, but the real freedom and
-            peace you&apos;ll find in the surrounding mountains. Wander through
-            lush forests, breathe in the fresh air, and watch the stars twinkle
-            above from the warmth of a campfire or your hot tub.
+            Our {cabins.length} luxury cabins provide a cozy base, but the real
+            freedom and peace you&apos;ll find in the surrounding mountains.
+            Wander through lush forests, breathe in the fresh air, and watch the
+            stars twinkle above from the warmth of a campfire or your hot tub.
           </p>
           <p>
             This is where memorable moments are made, surrounded by
@@ -97,6 +99,6 @@ const page: React.FC<pageProps> = ({}) => {
       </div>
     </div>
   );
-};
+}
 
 export default page;

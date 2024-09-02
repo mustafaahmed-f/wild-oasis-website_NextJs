@@ -3,12 +3,17 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import CabinData from "@/app/_Components/CabinData";
 import Spinner from "@/app/_Components/Spinner";
+import Filter from "../_Components/Filter";
+
+export const revalidate = 30;
 
 export const metadata: Metadata = {
   title: "Cabins",
 };
 
-async function Page() {
+async function Page({ searchParams }: { searchParams: any }) {
+  let filter = searchParams.capacity;
+
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -22,9 +27,11 @@ async function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
-
-      <Suspense fallback={<Spinner />}>
-        <CabinData />
+      <div className="flex items-center justify-end mb-3 w-full">
+        <Filter filter={filter} />
+      </div>
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinData filter={filter} />
       </Suspense>
     </div>
   );

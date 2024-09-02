@@ -1,6 +1,10 @@
 import { getCabin } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { getCabins } from "@/app/_lib/data-service";
+import TextExpander from "@/app/_Components/TextExpander";
+
+// export const revalidate = 0;
 
 // PLACEHOLDER DATA
 export async function generateMetadata({ params }: { params: any }) {
@@ -11,9 +15,21 @@ export async function generateMetadata({ params }: { params: any }) {
   };
 }
 
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  // console.log(cabins);
+  const ids = cabins?.map((cabin) => ({
+    cabinId: String(cabin.id),
+  }));
+  // console.log(ids);
+  return ids;
+}
+
 export default async function Page({ params }: { params: any }) {
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     await getCabin(params.cabinId);
+
+  // console.log(description);
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
@@ -32,7 +48,9 @@ export default async function Page({ params }: { params: any }) {
             Cabin {name}
           </h3>
 
-          <p className="text-lg text-primary-300 mb-10">{description}</p>
+          <p className="text-lg text-primary-300 mb-10">
+            <TextExpander>{description}</TextExpander>
+          </p>
 
           <ul className="flex flex-col gap-4 mb-7">
             <li className="flex gap-3 items-center">
