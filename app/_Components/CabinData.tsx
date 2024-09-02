@@ -9,8 +9,9 @@ interface CabinDataProps {
 async function CabinData({ filter }: CabinDataProps) {
   const cabins: any[] = await getCabins();
   let dispalyedCabins: any[] = [];
-
-  switch (filter) {
+  // if (!filter) dispalyedCabins = cabins;
+  let receivedFilter: string = filter ?? "all";
+  switch (receivedFilter) {
     case "all":
       dispalyedCabins = cabins;
 

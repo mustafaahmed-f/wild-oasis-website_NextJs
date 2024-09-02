@@ -1,4 +1,5 @@
 import React from "react";
+import { getCountries } from "../_lib/data-service";
 
 interface SelectCountryProps {
   defaultCountry: string;
@@ -13,10 +14,11 @@ async function SelectCountry({
   id,
   className,
 }: SelectCountryProps) {
-  //   const countries = await getCountries();
-  const countries: any[] = [];
+  const countries = await getCountries();
+  // const countries: any[] = [];
   const flag =
-    countries.find((country) => country.name === defaultCountry)?.flag ?? "";
+    countries.find((country: any) => country.name === defaultCountry)?.flag ??
+    "";
 
   return (
     <select
@@ -27,7 +29,7 @@ async function SelectCountry({
       className={className}
     >
       <option value="">Select country...</option>
-      {countries.map((c) => (
+      {countries.map((c: any) => (
         <option key={c.name} value={`${c.name}%${c.flag}`}>
           {c.name}
         </option>

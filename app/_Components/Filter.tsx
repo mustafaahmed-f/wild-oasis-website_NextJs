@@ -31,7 +31,7 @@ function Filter({ filter }: FilterProps) {
   let searchParams = useSearchParams();
   let pathName = usePathname();
   let router = useRouter();
-  let activeFilter = filter;
+  let activeFilter = filter ?? "all";
   function handleFilter(filter: string): void {
     let params = new URLSearchParams(searchParams);
     params.set("capacity", filter);

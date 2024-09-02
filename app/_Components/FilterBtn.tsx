@@ -16,7 +16,7 @@ function FilterBtn({
   return (
     <button
       onClick={() => handleFilter(filter)}
-      className={`bg-transparent px-2 py-1 rounded-sm hover:bg-primary-700 border-primary-950 ${
+      className={` px-2 py-1 rounded-sm hover:bg-primary-700 border-primary-950 ${
         activeFilter === filter ? "bg-primary-700" : ""
       }`}
     >
