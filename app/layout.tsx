@@ -6,6 +6,7 @@ import Logo from "@/app/_Components/Logo";
 import { Josefin_sans } from "./_styles/fonts";
 import Header from "./_Components/Header";
 import { useEffect } from "react";
+import ReservationProvider from "./_context/ReservationContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
       <body className="text-gray-50 bg-slate-900  min-h-screen flex flex-col">
         <Header />
         <main className="py-10 text-wrap whitespace-break-spaces px-7 sm:px-12 flex-1 grid">
-          {children}
+          <ReservationProvider>{children}</ReservationProvider>
         </main>
       </body>
     </html>

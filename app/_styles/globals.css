@@ -31,9 +31,16 @@
 }
 
 /* For data picker */
-.rdp {
+.rdp-root {
   --rdp-cell-size: 32px !important;
   --rdp-accent-color: theme("colors.accent.500") !important;
-  --rdp-background-color: theme("colors.accent.600") !important;
+  --rdp-background-color: theme("colors.accent.800") !important;
   margin: 0 !important;
+}
+.rdp-selected {
+  background-color: theme("colors.accent.600") !important;
+  color: theme("colors.primary.900") !important;
+}
+.rdp-range_start {
+  background-color: theme("colors.primary.900") !important;
 }

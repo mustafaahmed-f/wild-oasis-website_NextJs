@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import CabinData from "@/app/_Components/CabinData";
 import Spinner from "@/app/_Components/Spinner";
 import Filter from "../_Components/Filter";
+import ReservationReminder from "../_Components/ReservationReminder";
 
 export const revalidate = 30;
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 async function Page({ searchParams }: { searchParams: any }) {
   let filter = searchParams.capacity;
   return (
-    <div>
+    <div className="relative">
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
         Our Luxury Cabins
       </h1>
@@ -32,6 +33,8 @@ async function Page({ searchParams }: { searchParams: any }) {
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinData filter={filter} />
       </Suspense>
+
+      <ReservationReminder />
     </div>
   );
 }

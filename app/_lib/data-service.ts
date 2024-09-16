@@ -109,9 +109,11 @@ export async function getBookedDatesByCabinId(cabinId: number) {
     .or(`startDate.gte.${today},status.eq.checked-in`);
 
   if (error) {
-    console.error(error);
+    // console.error(error);
     throw new Error("Bookings could not get loaded");
   }
+
+  // await new Promise((res) => setTimeout(res, 1000));
 
   // Converting to actual dates to be displayed in the date picker
   const bookedDates = data
@@ -130,6 +132,7 @@ export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
   if (error) {
+    console.log(error);
     console.error(error);
     throw new Error("Settings could not be loaded");
   }
