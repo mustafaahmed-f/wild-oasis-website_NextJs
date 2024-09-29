@@ -3,6 +3,8 @@ import DateSelector from "@/app/_Components/DateSelector";
 import ReservationForm from "./ReservationForm";
 import ReservationReminder from "./ReservationReminder";
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
+import { auth } from "../_lib/auth";
+import LoginMessage from "./LoginMessage";
 
 // export const revalidate = 0;
 interface ReservationSectionProps {
@@ -13,6 +15,7 @@ async function ReservationSection({ cabin }: ReservationSectionProps) {
   // const settings = await getSettings();
   // const bookedDates = await getBookedDatesByCabinId(Number(cabinId));
   const { id } = cabin;
+  const sessions = await auth();
 
   const [settings, bookedDates] = await Promise.all([
     getSettings(),
@@ -29,7 +32,11 @@ async function ReservationSection({ cabin }: ReservationSectionProps) {
           settings={settings}
           bookedDates={bookedDates}
         />
-        <ReservationForm cabin={cabin} />
+        {sessions?.user ? (
+          <ReservationForm cabin={cabin} user={sessions?.user} />
+        ) : (
+          <LoginMessage />
+        )}
       </div>
     </div>
   );

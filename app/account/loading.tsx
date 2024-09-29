@@ -7,7 +7,6 @@ const Loading: React.FC<LoaderProps> = ({}) => {
   return (
     <div className="grid justify-center items-center">
       <Spinner />
-      <p className="my-3">Loading cabin data ...</p>
     </div>
   );
 };

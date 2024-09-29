@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import { auth } from "../_lib/auth";
+import Image from "next/image";
 
-interface NavigationProps {}
-
-const Navigation: React.FC<NavigationProps> = ({}) => {
+async function Navigation() {
+  const session = await auth();
   return (
     <nav className="z-10 text-xl">
       <ul className="flex gap-8 sm:gap-16 items-center">
@@ -26,14 +27,25 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         <li>
           <Link
             href="/account"
-            className="hover:text-accent-400 transition-colors"
+            className="hover:text-accent-400 transition-colors flex items-center gap-4"
           >
             Guest area
+            {session?.user?.image ? (
+              <span className="">
+                <Image
+                  width={27}
+                  height={27}
+                  src={session?.user?.image!}
+                  className="rounded-full"
+                  alt={session?.user?.name!}
+                />
+              </span>
+            ) : null}
           </Link>
         </li>
       </ul>
     </nav>
   );
-};
+}
 
 export default Navigation;
