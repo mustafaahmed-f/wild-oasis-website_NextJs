@@ -15,6 +15,7 @@ async function SelectCountry({
   className,
 }: SelectCountryProps) {
   const countries = await getCountries();
+
   // const countries: any[] = [];
   const flag =
     countries.find((country: any) => country.name === defaultCountry)?.flag ??

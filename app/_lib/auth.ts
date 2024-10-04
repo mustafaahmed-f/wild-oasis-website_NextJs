@@ -36,7 +36,7 @@ export const {
       try {
         const guest = await getGuest(user?.email!);
         if (!guest) {
-          const newGuest = await createGuest({
+          await createGuest({
             name: user.name,
             email: user.email,
           });

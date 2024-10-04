@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   },
   description:
     "Welcome to Wild Basis. The best luxury hotel in the world located in italian countryside.",
+  icons: {
+    icon: "/logo-dark.png",
+  },
 };
 
 export default function RootLayout({
