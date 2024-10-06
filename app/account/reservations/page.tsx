@@ -1,12 +1,14 @@
-"use client";
 import ReservationCard from "@/app/_Components/ReservationCard";
+import { auth } from "@/app/_lib/auth";
+import { getBookings } from "@/app/_lib/data-service";
 import Link from "next/link";
 import React, { useEffect } from "react";
 
-interface pageProps {}
+export const revalidate = 1000 * 60 * 60 * 24;
 
-const Reservations: React.FC<pageProps> = ({}) => {
-  const bookings: any[] = [];
+async function Reservations({}) {
+  const session = await auth();
+  const bookings: any[] = await getBookings(Number(session?.user.guestId));
 
   return (
     <div>
@@ -30,6 +32,6 @@ const Reservations: React.FC<pageProps> = ({}) => {
       )}
     </div>
   );
-};
+}
 
 export default Reservations;

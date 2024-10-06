@@ -3,6 +3,8 @@ import React from "react";
 import SelectCountry from "./SelectCountry";
 import { updateGuest } from "../_lib/actions";
 import { auth } from "../_lib/auth";
+import Image from "next/image";
+import UpdateProfileBtn from "./UpdateProfileBtn";
 
 interface ProfileFormProps {
   children: React.ReactNode;
@@ -10,7 +12,7 @@ interface ProfileFormProps {
 }
 
 function ProfileForm({ children, guest }: ProfileFormProps) {
-  const { name, email, nationalID } = guest;
+  const { name, email, nationalID, countryFlag } = guest;
   return (
     <form
       action={updateGuest}
@@ -37,13 +39,13 @@ function ProfileForm({ children, guest }: ProfileFormProps) {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label htmlFor="nationality">Where are you from?</label>
-          {/* <Image
-              src={countryFlag}
-              alt="Country flag"
-              width={50}
-              height={50}
-              className="h-5 rounded-sm"
-            /> */}
+          <Image
+            src={countryFlag}
+            alt="Country flag"
+            width={50}
+            height={50}
+            className="h-5 rounded-sm"
+          />
         </div>
 
         {children}
@@ -59,9 +61,7 @@ function ProfileForm({ children, guest }: ProfileFormProps) {
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-          Update profile
-        </button>
+        <UpdateProfileBtn />
       </div>
     </form>
   );
