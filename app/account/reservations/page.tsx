@@ -1,8 +1,11 @@
 import ReservationCard from "@/app/_Components/ReservationCard";
+import ReservationList from "@/app/_Components/ReservationList";
+import { deleteReservation } from "@/app/_lib/actions";
 import { auth } from "@/app/_lib/auth";
 import { getBookings } from "@/app/_lib/data-service";
+
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useOptimistic } from "react";
 
 export const revalidate = 1000 * 60 * 60 * 24;
 
@@ -16,20 +19,7 @@ async function Reservations({}) {
         Your reservations
       </h2>
 
-      {bookings.length === 0 ? (
-        <p className="text-lg">
-          You have no reservations yet. Check out our{" "}
-          <Link className="underline text-accent-500" href="/cabins">
-            luxury cabins &rarr;
-          </Link>
-        </p>
-      ) : (
-        <ul className="space-y-6">
-          {bookings.map((booking) => (
-            <ReservationCard booking={booking} key={booking.id} />
-          ))}
-        </ul>
-      )}
+      <ReservationList bookings={bookings} />
     </div>
   );
 }

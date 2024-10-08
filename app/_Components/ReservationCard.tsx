@@ -7,9 +7,13 @@ import Link from "next/link";
 
 interface ReservationCardProps {
   booking: any;
+  onDelete: (id: number) => {};
 }
 
-const ReservationCard: React.FC<ReservationCardProps> = ({ booking }) => {
+const ReservationCard: React.FC<ReservationCardProps> = ({
+  booking,
+  onDelete,
+}) => {
   const {
     id,
     guestId,
@@ -80,7 +84,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ booking }) => {
               <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
               <span className="mt-1">Edit</span>
             </Link>
-            <DeleteReservation bookingId={id} />
+            <DeleteReservation onDelete={onDelete} bookingId={id} />
           </>
         ) : null}
       </div>
