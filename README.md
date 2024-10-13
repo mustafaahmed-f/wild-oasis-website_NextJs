@@ -57,8 +57,8 @@
       </p>
       <p>
         Main Link :
-        <a href="https://ecommercebymustafa.onrender.com"
-          >https://ecommercebymustafa.onrender.com</a
+        <a href="https://wild-oasis-website-by-mustafa.vercel.app/"
+          >https://wild-oasis-website-by-mustafa.vercel.app/</a
         >
       </p>
     </section>
