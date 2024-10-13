@@ -94,3 +94,26 @@ export async function updateReservation(formData: any) {
   revalidatePath("/account/reservations");
   redirect("/account/reservations");
 }
+
+export async function createReservation(reservationData: any, formData: any) {
+  let finalData = {
+    ...reservationData,
+    numGuests: formData.get("numGuests"),
+    observations: formData.get("observations"),
+  };
+
+  const { data, error } = await supabase
+    .from("bookings")
+    .insert([finalData])
+    // So that the newly created object gets returned!
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be created");
+  }
+
+  revalidatePath(`/cabins/${reservationData.cabinId}`);
+  redirect("/cabins/thankyou");
+}
