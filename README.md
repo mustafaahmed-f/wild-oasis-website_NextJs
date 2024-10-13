@@ -42,6 +42,7 @@
     </section>
     <hr />
     <section id="Features">
+      <h2># Features</h2>
       <ul>
         <li>Authentication using gmail</li>
         <li>Get full control on user's profile and reservations</li>
